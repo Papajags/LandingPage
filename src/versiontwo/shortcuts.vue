@@ -1,9 +1,20 @@
 <template>
-  <div class="shortcuts">
+  <div
+    class="shortcuts_top"
+    v-if="this.$store.state.show_shortcuts"
+    :style="
+      '--posx:' +
+      this.$store.state.shortcuts_pos_x +
+      '%;' +
+      '--posy:' +
+      this.$store.state.shortcuts_pos_y +
+      '%;'
+    "
+  >
     <button v-for="sht in this.get_shortcuts" :key="sht">
-      <a :href="sht.link" target="_blank">
-        <img :src="crop(sht.link)" />
-        {{getdomainname(sht.link)}}
+      <a :href="sht.link" :style="link_size" target="_blank">
+        <img :src="sht.icon" />
+        {{ sht.name }}
       </a>
     </button>
   </div>
@@ -13,7 +24,13 @@ export default {
   computed: {
     get_shortcuts() {
       return this.$store.state.shortcuts;
-    }
+    },
+    link_size() {
+      return {
+        "--size": this.$store.state.shortcuts_size + "px",
+        "--hoversize": this.$store.state.shortcuts_size * 2 + "px",
+      };
+    },
   },
   methods: {
     crop(link) {
@@ -26,34 +43,36 @@ export default {
     getdomainname(link) {
       var dom = link.substring(link.indexOf(".") + 1, link.lastIndexOf("."));
       return dom;
-    }
-  }
+    },
+  },
 };
 </script>
 
 
 <style  scoped>
-.shortcuts {
+.shortcuts_top {
   position: fixed;
   display: flex;
   justify-content: center;
-  left: 0px;
-  right: 0px;
-  top: 0px;
+  left: var(--posx);
+  top: var(--posy);
   margin-left: auto;
   margin-right: auto;
-  width: fit-content;
+  width: 100%;
+  z-index: -100;
 }
 img {
   margin: 10px;
+  height: 33%;
+  width: auto;
 }
 button {
   background: none;
   border: none;
 }
 a {
-  width: 60px;
-  height: 60px;
+  width: var(--size);
+  height: var(--size);
   margin: 10px;
   background-color: rgba(102, 102, 102, 0.219);
   border: none;
@@ -70,7 +89,7 @@ a {
   overflow: hidden;
 }
 a:hover {
-  width: 70px;
-  height: 70px;
+  width: var(--hoversize);
+  height: var(--hoversize);
 }
 </style>
