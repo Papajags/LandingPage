@@ -7,6 +7,7 @@
       '--color:' +
       this.$store.state.time_color
     "
+    v-if="this.$store.state.show_time"
   >
     <div
       class="middle"

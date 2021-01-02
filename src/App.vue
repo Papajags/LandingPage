@@ -3,28 +3,28 @@
     <img
       class="bg"
       v-if="this.$store.state.custom_background"
-      :src="getbglink"
+      :src="this.$store.state.background_image"
     />
     <div class="using_bg" v-if="this.dim"></div>
     <settings></settings>
     <talker v-if="this.$store.state.show_talker"></talker>
-    <TimeComponent v-if="this.$store.state.show_time"></TimeComponent>
     <div ondrop="this.callitmagic(event)"></div>
     <settingss></settingss>
-    <shortcuts></shortcuts>
+    <TimeComponent></TimeComponent>
+    <ShortcutComponent></ShortcutComponent>
   </div>
 </template>
 
 <script>
-import TimeComponent from "./versiontwo/TimeComponent.vue";
-import shortcuts from "./versiontwo/shortcuts.vue";
-import settings from "./versiontwo/settings.vue";
+import TimeComponent from "./Components/TimeComponent.vue";
+import ShortcutComponent from "./Components/ShortcutComponent.vue";
+import settings from "./Options/settings.vue";
 export default {
   name: "App",
   components: {
     settings,
     TimeComponent,
-    shortcuts,
+    ShortcutComponent,
   },
   methods: {
     callitmagic(event) {
@@ -32,21 +32,11 @@ export default {
       console.log(event);
     },
   },
-  computed: {
-    getbglink() {
-      return this.$store.state.background_image;
-    },
-  },
+  computed: {},
   data: function () {
     return { dim: false };
   },
   mounted: function () {},
-  // style="
-  //   background-repeat: no-repeat;
-  //   background-size: cover;
-  //   min-height: 100%;
-  //   background-image: url({this.$store.state.background_image});
-  // "
 };
 </script>
 
