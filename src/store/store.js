@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist'
-
 Vue.use(Vuex);
-const vuexLocal = new VuexPersistence({
+const vuexPersist = new VuexPersistence({
+    key: 'my-es',
     storage: window.localStorage
 })
 export const store = new Vuex.Store({
@@ -25,32 +25,30 @@ export const store = new Vuex.Store({
         shortcuts_pos_x: 0,
         shortcuts_pos_y: 0,
         shortcuts_size: 100,
-        shortcuts: [{ link: "https://www.twitter.com", name: "twitter", icon: "https://img.icons8.com/fluent/100/000000/twitter.png", }, { link: "https://www.facebook.com", name: "facebook", icon: "https://img.icons8.com/cute-clipart/512/000000/facebook-new.png" }, { link: "www.youtube.com", name: "youtube", icon: "https://img.icons8.com/fluent/240/000000/youtube-play.png" },],
+        shortcuts: [],
+
+
+        show_dialogue: true,
+        statement: "Hello There.",
+        dialogue_color: "#ffffff",
+        dialogue_size: 200,
+        dialogue_pos_x: 0,
+        dialogue_pos_y: 20,
+
+
+
     },
     mutations: {
-        set_botname(state, name) {
-            state.botname = name;
-        },
-        set_bgimg(state, link) {
-            state.background_image = link;
-        },
-        display_time(state, status) {
-            state.show_time = status;
-        },
-        display_talker(state, status) {
-            state.show_talker = status;
-        },
         add_shortcut(state, status) {
             state.shortcuts.push(status);
-            localStorage.setItem("all", state.shortcuts);
         },
         remove_shortcut(state, status) {
             state.shortcuts.splice(status, 1);
         },
         save() {
-            localStorage.setItem("all", this.state);
+            console.log(this.state);
         }
     },
-    plugins: [vuexLocal.plugin]
+    plugins: [vuexPersist.plugin]
 
 })

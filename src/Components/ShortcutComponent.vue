@@ -11,7 +11,7 @@
       '%;'
     "
   >
-    <button v-for="sht in this.get_shortcuts" :key="sht">
+    <button v-for="sht in this.$store.state.shortcuts" :key="sht.name">
       <a :href="sht.link" :style="link_size" target="_blank">
         <img :src="sht.icon" />
         {{ sht.name }}
@@ -22,27 +22,11 @@
 <script>
 export default {
   computed: {
-    get_shortcuts() {
-      return this.$store.state.shortcuts;
-    },
     link_size() {
       return {
         "--size": this.$store.state.shortcuts_size + "px",
         "--hoversize": this.$store.state.shortcuts_size * 2 + "px",
       };
-    },
-  },
-  methods: {
-    crop(link) {
-      return (
-        "https://www.google.com/s2/favicons?domain=" +
-        this.getdomainname(link) +
-        ".com"
-      );
-    },
-    getdomainname(link) {
-      var dom = link.substring(link.indexOf(".") + 1, link.lastIndexOf("."));
-      return dom;
     },
   },
 };

@@ -20,7 +20,6 @@
           <input
             type="number"
             v-model="this.$store.state.shortcuts_size"
-            v-bind="this.$store.state.shortcuts_size"
             v-on:input="set_size($event)"
           />
         </li>
@@ -32,7 +31,6 @@
               <input
                 type="number"
                 v-model="this.$store.state.shortcuts_pos_x"
-                v-bind="this.$store.state.shortcuts_pos_x"
                 v-on:input="set_pos_x($event)"
               />
             </li>
@@ -41,7 +39,6 @@
               <input
                 type="number"
                 v-model="this.$store.state.shortcuts_pos_y"
-                v-bind="this.$store.state.shortcuts_pos_y"
                 v-on:input="set_pos_y($event)"
               />
             </li>
@@ -51,7 +48,7 @@
           Links <button class="arrow_button">></button>
           <ul class="prop3">
             <li
-              v-for="(sht, index) in this.$store.state.shortcuts"
+              v-for="(sht, indexx) in this.$store.state.shortcuts"
               :key="sht.link"
             >
               <div class="link_contain">
@@ -61,7 +58,7 @@
                 type="submit"
                 class="special_button"
                 value="-"
-                v-on:click="remove_shortcut(index)"
+                v-on:click="remove_shortcut(indexx)"
               />
             </li>
           </ul>
@@ -111,22 +108,35 @@
 <style scoped>
 button {
   display: flex;
-  /* align-content: center; */
   align-items: center;
   justify-content: center;
 }
 </style>
 <script>
 export default {
-  computed: {
-    get_timesize() {
-      return this.$store.state.time_size;
-    },
-  },
   components: {},
   methods: {
     show_shortcut: function (event) {
       this.$store.state.show_shortcuts = event.target.checked;
+      if (this.$store.state.shortcuts.length == 0)
+        this.$store.state.shortcuts = [
+          {
+            link: "https://www.twitter.com",
+            name: "twitter",
+            icon: "https://img.icons8.com/fluent/100/000000/twitter.png",
+          },
+          {
+            link: "https://www.facebook.com",
+            name: "facebook",
+            icon: "https://img.icons8.com/fluent/50/000000/facebook-new.png",
+          },
+          {
+            link: "www.youtube.com",
+            name: "youtube",
+            icon: "https://img.icons8.com/fluent/240/000000/youtube-play.png",
+          },
+        ];
+      this.$store.commit("save");
     },
     add_shortcut: function () {
       var shortcut = { name: "something", link: "" };
@@ -138,23 +148,24 @@ export default {
       shortcut.link = document.getElementById("shortcut_link").value.length;
       if (shortcut.link.length == 0) return;
       document.getElementById("shortcut_link").value = "";
-      this.$store.commit("add_shortcut", shortcut);
+      this.$store.state.shortcuts.push(shortcut);
+      this.$store.commit("save");
     },
     remove_shortcut: function (index) {
-      this.$store.commit("remove_shortcut", index);
-    },
-    change_pos: function (to) {
-      console.log(to);
-      this.$store.state.shortcuts_position = to;
+      this.$store.state.shortcuts.splice(index, 1);
+      this.$store.commit("save");
     },
     set_size: function (event) {
       this.$store.state.shortcuts_size = event.target.value;
+      this.$store.commit("save");
     },
     set_pos_x: function (event) {
       this.$store.state.shortcuts_pos_x = event.target.value;
+      this.$store.commit("save");
     },
     set_pos_y: function (event) {
       this.$store.state.shortcuts_pos_y = event.target.value;
+      this.$store.commit("save");
     },
   },
 };

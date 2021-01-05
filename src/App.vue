@@ -9,15 +9,16 @@
     <settings></settings>
     <talker v-if="this.$store.state.show_talker"></talker>
     <div ondrop="this.callitmagic(event)"></div>
-    <settingss></settingss>
     <TimeComponent></TimeComponent>
     <ShortcutComponent></ShortcutComponent>
+    <DialogueComponent></DialogueComponent>
   </div>
 </template>
 
 <script>
 import TimeComponent from "./Components/TimeComponent.vue";
 import ShortcutComponent from "./Components/ShortcutComponent.vue";
+import DialogueComponent from "./Components/DialogueComponent.vue";
 import settings from "./Options/settings.vue";
 export default {
   name: "App",
@@ -25,6 +26,7 @@ export default {
     settings,
     TimeComponent,
     ShortcutComponent,
+    DialogueComponent,
   },
   methods: {
     callitmagic(event) {

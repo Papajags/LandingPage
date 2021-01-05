@@ -11,7 +11,8 @@
       <div class="choice">
         <TimeOption></TimeOption>
         <BackgroundOption></BackgroundOption>
-        <ShortcutOptions></ShortcutOptions>
+        <ShortcutOption></ShortcutOption>
+        <DialogueOption> </DialogueOption>
       </div>
     </div>
   </div>
@@ -295,13 +296,19 @@ input[type="number"] {
 <script>
 import TimeOption from "./TimeOption.vue";
 import BackgroundOption from "./BackgroundOption.vue";
-import ShortcutOptions from "./ShortcutOptions.vue";
+import ShortcutOption from "./ShortcutOption.vue";
+import DialogueOption from "./DialogueOption.vue";
 
 export default {
-  components: { TimeOption, BackgroundOption, ShortcutOptions },
+  components: {
+    TimeOption,
+    BackgroundOption,
+    ShortcutOption,
+    DialogueOption,
+  },
 
   methods: {
-    dimbg: function () {
+    DialogueOptionmbg: function () {
       this.$store.state.dim_bg = true;
     },
     dontdim: function () {

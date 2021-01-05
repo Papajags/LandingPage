@@ -29,16 +29,10 @@
 export default {
   data() {
     return {
-      date: "",
       time: "",
-      timestamp: "",
-      timepos: this.$store.state.time_position,
     };
   },
   created() {
-    if (this.$store.state.time_position == null) {
-      this.$store.state.time_position = "bottomright";
-    }
     setInterval(() => {
       const today = new Date();
       const date =

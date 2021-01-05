@@ -20,7 +20,6 @@
           <input
             type="text"
             v-model="this.$store.state.background_image"
-            v-bind="this.$store.state.background_image"
             v-on:input="set_img($event)"
           />
         </li>
@@ -41,14 +40,15 @@ export default {
   methods: {
     enable_img: function (event) {
       this.$store.state.custom_background = event.target.checked;
+      this.$store.commit("save");
     },
     set_img: function (event) {
       this.$store.state.background_image = event.target.value;
       if (event.target.value == "")
         this.$store.state.background_image =
           "https://free4kwallpapers.com/uploads/originals/2020/12/19/paris-france-wallpaper.jpg";
+      this.$store.commit("save");
     },
-    //set_grad: function (event) {},
   },
 };
 </script>
