@@ -1,5 +1,5 @@
 {
-  "name": "Welcome,Bro",
+  "name": "HomeTab",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "artyom.js": "^1.0.6",
+    "bue": "^1.0.4",
     "core-js": "^3.8.2",
     "get-website-favicon": "0.0.7",
     "vue": "^2.6.12",
@@ -41,5 +42,17 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "description": "```\r npm install\r ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Papajags/LandingPage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Papajags/LandingPage/issues"
+  },
+  "homepage": "https://github.com/Papajags/LandingPage#readme"
 }

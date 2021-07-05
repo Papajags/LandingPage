@@ -29,7 +29,7 @@ export const store = new Vuex.Store({
 
 
         show_dialogue: true,
-        statement: "Hello There.",
+        statement: "Welcome To SnapTab",
         dialogue_color: "#ffffff",
         dialogue_size: 200,
         dialogue_pos_x: 0,

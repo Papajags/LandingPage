@@ -20,7 +20,6 @@
 <style >
 .settings {
   display: flex;
-  font-family: "Abel", sans-serif;
   color: white;
   left: 10px;
   top: 10px;

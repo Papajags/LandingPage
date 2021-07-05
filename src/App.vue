@@ -73,4 +73,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+button {
+  font-family: "Abel", sans-serif;
+}
 </style>
